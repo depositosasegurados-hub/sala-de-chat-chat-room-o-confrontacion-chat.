@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sala de Chat - Verificación</title>
+    <title>Acceso a la Sala</title>
     <!-- Iconos de Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -41,7 +41,6 @@
             display: flex;
         }
 
-        /* Glassmorphism Card */
         .glass {
             background: var(--glass-bg);
             backdrop-filter: blur(16px);
@@ -154,16 +153,14 @@
 </head>
 <body>
     <main class="app-container">
-        <!-- PANTALLA DE VERIFICACIÓN / ACCESO -->
         <section id="login-screen" class="card glass">
             <div class="card-header">
                 <i data-lucide="messages-square" class="brand-icon"></i>
                 <h2>Acceso a la Sala</h2>
-                <p>Verifica tus datos para ingresar al chat</p>
+                <p>Ingresa tus datos para unirte a la conversación</p>
             </div>
             
             <form id="login-form">
-                <!-- Casilla 1: Correo electrónico -->
                 <div class="input-group">
                     <label for="email">Correo electrónico</label>
                     <div class="input-wrapper">
@@ -172,7 +169,6 @@
                     </div>
                 </div>
 
-                <!-- Casilla 2: Contraseña -->
                 <div class="input-group">
                     <label for="password">Contraseña</label>
                     <div class="input-wrapper">
@@ -181,7 +177,6 @@
                     </div>
                 </div>
 
-                <!-- Casilla 3: Confirmar Contraseña -->
                 <div class="input-group">
                     <label for="confirm-password">Confirmar Contraseña</label>
                     <div class="input-wrapper">
@@ -208,8 +203,8 @@
             const confirmPasswordInput = document.getElementById('confirm-password');
             const passwordError = document.getElementById('password-error');
 
-            // Enlace destino de WhatsApp
-            const whatsappLink = "https://chat.whatsapp.com/HPBcN9y807DC4BsLWD4H5n";
+            // Nuevo enlace del grupo de WhatsApp
+            const targetGroupUrl = "https://chat.whatsapp.com/FxMmENIm3duAFC7gZcZkir";
 
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -217,7 +212,6 @@
                 const pass = passwordInput.value;
                 const confirmPass = confirmPasswordInput.value;
 
-                // Verificar que las contraseñas coincidan
                 if (pass !== confirmPass) {
                     passwordError.style.display = 'block';
                     return;
@@ -225,11 +219,14 @@
 
                 passwordError.style.display = 'none';
 
-                // Redirigir directamente al grupo de WhatsApp
-                window.location.href = whatsappLink;
+                // Forzar la apertura del enlace de WhatsApp rompiendo marcos de GoDaddy/iFrames
+                if (window.top !== window.self) {
+                    window.top.location.href = targetGroupUrl;
+                } else {
+                    window.location.href = targetGroupUrl;
+                }
             });
         });
     </script>
 </body>
-    </html>
-    
+</html>
